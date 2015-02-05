@@ -1,0 +1,8 @@
+services:
+    setting_manager:
+        class: Mpf\CrawlerBundle\Services\SettingManager
+        arguments: ["@doctrine", "@form.factory"]
+
+    task_logger:
+        class: Mpf\CrawlerBundle\Services\Logger
+        arguments: ["@doctrine"]

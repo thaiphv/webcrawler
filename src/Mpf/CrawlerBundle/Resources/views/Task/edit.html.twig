@@ -1,0 +1,37 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Edit Crawler Task{% endblock %}
+
+{% block content %}
+    <div class="row col-sm-12">
+        <div class="page-header">
+            <h1>Edit Crawler Task</h1>
+        </div>
+        <div>
+            {{ form_start(form, {'action': path('_task_edit', {'taskId': taskId}), 'attr': {'class': 'form-horizontal', 'role': 'form'}}) }}
+            {{ form_errors(form) }}
+
+            {% for name, field in form %}
+                {% if name != '_token' %}
+                    <div class="form-group">
+                        {{ form_label(field, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                        <div class="col-sm-9">
+                            {{ form_errors(field) }}
+                            {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="{{ path('_task_edit', {'taskId': taskId}) }}" class="btn btn-link">Cancel</a>
+                    <a href="{{ path('_task_index') }}" class="btn btn-link">Back To List</a>
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

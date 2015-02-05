@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Crawer Tasks{% endblock %}
+
+{% block content %}
+    <div class="row col-sm-12">
+        <div class="page-header">
+            <h1>Crawler Tasks</h1>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Task ID</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Currency</th>
+                <th>Parser</th>
+                <th>Updated At</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td><a href="{{ path('_task_edit', {'taskId': task.id}) }}">{{ task.id }}</a></td>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.status ? 'On' : 'Off' }}</td>
+                    <td>{{ task.currency.code }}</td>
+                    <td>{{ task.parser.name }}</td>
+                    <td>{{ task.mtime | date('Y-m-d H:i:s') }}</td>
+                    <td>
+                        <a href="{{ path('_task_edit', {'taskId': task.id}) }}">Edit</a>
+                        <a href="{{ path('_task_clone', {'taskId': task.id}) }}">Clone</a>
+                        <a href="{{ path('_task_disable', {'taskId': task.id}) }}">Disable</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('_task_new') }}" class="btn btn-primary">Add New Task</a>
+    </div>
+{% endblock %}

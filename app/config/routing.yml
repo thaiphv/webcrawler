@@ -1,0 +1,11 @@
+_mpf_crawler:
+    resource: "@MpfCrawlerBundle/Controller/"
+    prefix:   /
+    type: annotation
+
+_homepage:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: _setting_index
+        permanent: false
